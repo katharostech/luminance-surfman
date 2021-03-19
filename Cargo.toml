@@ -1,0 +1,23 @@
+[package]
+name = "luminance-surfman"
+version = "0.0.0"
+authors = ["Katharos Technology LLC."]
+edition = "2018"
+description = "A Surfman platform crate for the Luminance graphics API"
+
+documentation = "https://docs.rs/luminance-surfman"
+repository = "https://github.com/katharostech/luminance-surfman"
+readme = "README.md"
+license-file = "LICENSE.md"
+
+keywords = []
+categories = [] # See: https://crates.io/category_slugs
+
+[dependencies]
+winit = "0.24.0"
+surfman = { version = "0.4.0", features = ["sm-x11"] }
+luminance = "0.43.2"
+gl = "0.14.0"
+luminance-gl = "0.16.1"
+thiserror = "1.0.24"
+euclid = "0.20"
