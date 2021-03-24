@@ -85,7 +85,7 @@ impl SurfmanSurface {
 
         // Create a surface that can be accessed only from the GPU
         let surface = device
-            .create_surface(&context, SurfaceAccess::GPUOnly, surface_type)
+            .create_surface(&context, SurfaceAccess::GPUCPU, surface_type)
             .map_err(surface_err)?;
 
         // Bind our surface to our create GL context
@@ -108,7 +108,7 @@ impl SurfmanSurface {
 
     /// Get the back buffer
     pub fn back_buffer(&mut self) -> Result<Framebuffer<GL33, Dim2, (), ()>, SurfmanError> {
-        let mut surface = self
+        let surface = self
             .device
             .unbind_surface_from_context(&mut self.context)
             .map_err(surface_err)?
@@ -118,9 +118,6 @@ impl SurfmanSurface {
         let width = surface_info.size.width as u32;
         let height = surface_info.size.height as u32;
 
-        self.device
-            .present_surface(&self.context, &mut surface)
-            .map_err(surface_err)?;
         self.device
             .bind_surface_to_context(&mut self.context, surface)
             .map_err(|(e, _)| surface_err(e))?;
