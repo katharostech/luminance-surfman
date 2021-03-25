@@ -23,6 +23,8 @@ use surfman::{
 };
 use winit::window::Window;
 
+surfman::declare_surfman!();
+
 #[derive(thiserror::Error, Debug)]
 pub enum SurfmanError {
     #[error("Surface error: {0}")]
