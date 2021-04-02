@@ -19,4 +19,4 @@ surfman = { version = "0.4.0", features = ["sm-x11"] }
 luminance = "0.43.2"
 thiserror = "1.0.24"
 euclid = "0.20"
-luminance-glow = { git = "https://github.com/katharostech/luminance-glow" }
+luminance-glow = { git = "https://github.com/katharostech/luminance-glow", branch = "master" }
