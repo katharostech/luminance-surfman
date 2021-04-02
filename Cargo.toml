@@ -17,7 +17,6 @@ categories = [] # See: https://crates.io/category_slugs
 winit = "0.24.0"
 surfman = { version = "0.4.0", features = ["sm-x11"] }
 luminance = "0.43.2"
-gl = "0.14.0"
-luminance-gl = "0.16.1"
 thiserror = "1.0.24"
 euclid = "0.20"
+luminance-glow = { git = "https://github.com/katharostech/luminance-glow" }
