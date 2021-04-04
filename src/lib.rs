@@ -16,6 +16,7 @@ use luminance::{
     framebuffer::{Framebuffer, FramebufferError},
     texture::Dim2,
 };
+pub use luminance_glow::ShaderVersion;
 use luminance_glow::{Context as GlowContext, Glow, StateQueryError};
 use surfman::{
     Connection, Context, ContextAttributeFlags, ContextAttributes, Device, GLVersion,
@@ -54,7 +55,10 @@ impl SurfmanSurface {
     ///
     /// > ⚠️ **Warning:** Because the surfman surface does not have access to the window event loop
     /// > you will need to manualy call [`set_size`] on the surface when the window is resized.
-    pub fn from_winit_window(window: &Window) -> Result<Self, SurfmanError> {
+    pub fn from_winit_window(
+        window: &Window,
+        shader_version: ShaderVersion,
+    ) -> Result<Self, SurfmanError> {
         // Create a connection to the graphics provider from our winit window
         let conn = Connection::from_winit_window(&window).map_err(surface_err)?;
         // Create a native widget to attach the visible render surface to
@@ -99,7 +103,10 @@ impl SurfmanSurface {
 
         // Get a pointer to the OpenGL functions
         let gl = unsafe {
-            GlowContext::from_loader_function(|s| device.get_proc_address(&context, s) as *const _)
+            GlowContext::from_loader_function(
+                |s| device.get_proc_address(&context, s) as *const _,
+                shader_version,
+            )
         };
 
         let backend = Glow::from_context(gl)?;
